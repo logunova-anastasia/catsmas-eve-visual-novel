@@ -3,7 +3,7 @@
 # Определение персонажей игры.
 define e = Character('Кошко', color="#57100e")
 
-define gui.text_font = "Bimbo-Regular.ttf"
+define gui.text_font = "KoskoRegular-Regular.ttf"
 
 # Вместо использования оператора image можете просто
 # складывать все ваши файлы изображений в папку images.

@@ -1,7 +1,9 @@
 ﻿# Вы можете расположить сценарий своей игры в этом файле.
 
 # Определение персонажей игры.
-define e = Character('Кошко', color="#57100e")
+define g = Character('Мустанг', color="#57100e")
+define o = Character('Оливер', color="#57100e")
+define w = Character('Мура', color="#57100e")
 
 define gui.text_font = "KoskoRegular-Regular.ttf"
 
@@ -13,20 +15,29 @@ define gui.text_font = "KoskoRegular-Regular.ttf"
 # Игра начинается здесь:
 label start:
 
+    scene aiiii: # для создания следующей страницы в игре просто копируем код выи вставляем в нужном порядке
+        size(1920, 1080)
+
+    show orange_cat:
+        xalign -0.2 yalign -0.1
+
+    o "Вы...наверное, хотите узнать моё имя? Тогда, послушайте... Я Оливер. Хотите знать, о чём я думаю? Я... думаю о еде, тепле и о подарках."
+
     scene aiiii:
         size(1920, 1080)
 
-    show kitty:
+    show grey_cat:
         xalign -0.1 yalign -0.3
 
-    e "Я кот, всех с новай годай"
+    g "Привет! Меня зовут Мустанг!"
 
-    scene aiiii: # для создания следующей страницы в игре просто копируем код выше и вставляем в нужном порядке
+    scene aiiii:
         size(1920, 1080)
 
-    show kitty:
+    show white_cat:
         xalign -0.1 yalign -0.3
 
-    e "Я кот-мяук, всех с новай годай"
+    w "Привет! Меня зовут Мура!"
+
 
     return

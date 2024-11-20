@@ -17,8 +17,8 @@ label start:
         size(1920, 1080)
 
     show kitty:
-        xalign -0.1 yalign -0.3
+        xalign -0.1 yalign -0.4
 
-    e "Я кот, всех с новай годай"
+    e "Я кошко, всех с новай годай"
 
     return

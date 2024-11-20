@@ -27,6 +27,6 @@ label start:
     show kitty:
         xalign -0.1 yalign -0.3
 
-    e "Я кот, всех с новай годай"
+    e "Я кот-мяу, всех с новай годай"
 
     return

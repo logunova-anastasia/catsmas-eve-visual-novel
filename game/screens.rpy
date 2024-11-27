@@ -204,13 +204,25 @@ style input:
 ## каждый с заголовком и полями действия.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
+init:
+    $ changed_buttons = 0
 
 screen choice(items):
     style_prefix "choice"
 
-    vbox:
-        for i in items:
-            textbutton i.caption action i.action
+    if changed_buttons == 0:
+        vbox:
+            for i in items:
+                textbutton i.caption action i.action
+    elif changed_buttons == 1: #helps us to have special design of buttons only when we want it
+        vbox:
+            xalign 0.5
+            ypos 900
+            yanchor 0.5
+            for i in items:
+                button:
+                    text i.caption align (.5, .5)
+                    action i.action
 
 
 style choice_vbox is vbox
@@ -219,7 +231,7 @@ style choice_button_text is button_text
 
 style choice_vbox:
     xalign 0.5
-    ypos 405
+    ypos 200
     yanchor 0.5
 
     spacing gui.choice_spacing

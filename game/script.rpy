@@ -1,8 +1,10 @@
-﻿# Вы можете расположить сценарий своей игры в этом файле.
+﻿
+# Вы можете расположить сценарий своей игры в этом файле.
 # # Определение персонажей игры.
-define g = Character('Мустанг', color="#57100e")
-define o = Character('Оливер', color="#57100e")
-define w = Character('Мура', color="#57100e")
+define g = Character('Барсик', color="#57100e")
+define o = Character('Вася', color="#57100e")
+define w = Character('Яшка', color="#57100e")
+define p = Character('Author', color="#57100e")
 
 
 define gui.text_font = "KoskoRegular-Regular.ttf"
@@ -41,6 +43,12 @@ screen background():
         use screen_3()
 
 
+screen next_button():
+    imagebutton:
+        xalign 0.5 yalign 0.5
+        idle "gui/button/pngwing.com.png"
+        action [Hide("background"), Jump('preparation')]
+
 # Вместо использования оператора image можете просто
 # складывать все ваши файлы изображений в папку images.
 # Например, сцену bg room можно вызвать файлом "bg room.png",
@@ -48,20 +56,22 @@ screen background():
 
 
 # Игра начинается здесь:
-# label start:
 label start:
     # Показать главный экран
+
     show screen background
-    o "Вы...наверное, хотите узнать моё имя? Тогда, послушайте... Я Оливер. Хотите знать, о чём я думаю? Я... думаю о еде, тепле и о подарках."
-    g "Привет! Меня зовут Мустанг!"
-    w "Привет! Меня зовут Мура!"
+    show screen next_button()
+    o "Вы...наверное, хотите узнать моё имя? Тогда, послушайте... Я Барсик. Хотите знать, о чём я думаю? Я... думаю о еде, тепле и о подарках."
+#     g "Привет! Меня зовут Вася!"
+#     w "Привет! Меня зовут Яшка!"
 
 
 
+
+label preparation:
+    hide screen next_button
+    scene aiiii:
+        size(1920, 1080)
+    p "Привет! Начнем игру!"
 
     return
-
-
-
-
-

@@ -71,7 +71,7 @@ label start:
         size(1920, 1080)
 
     $ changed_buttons = 1 #эта переменная позволяет применить индивид. стиль к кнопкам выбора.
-    # если нужен стандарт, то пишем $ choise_var = 0
+    # если нужен стандарт, то пишем $ changed_buttons = 0
     menu:
         "Котик Барсик":
             $ selected_character = cat_1

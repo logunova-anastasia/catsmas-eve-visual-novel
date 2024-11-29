@@ -114,7 +114,7 @@ screen say(who, what):
     ## По стандарту не показывается на варианте для мобильных устройств — мало
     ## места.
     if not renpy.variant("small"):
-        add SideImage() xalign 0.0 yalign 1.0
+        add SideImage() xalign -0.1 yalign 0.5 offset (-60, 340)
 
 
 ## Делает namebox доступным для стилизации через объект Character.
@@ -139,7 +139,7 @@ style window:
     background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
 
 style namebox:
-    xpos gui.name_xpos
+    xpos 490
     xanchor gui.name_xalign
     xsize gui.namebox_width
     ypos gui.name_ypos
@@ -156,8 +156,8 @@ style say_label:
 style say_dialogue:
     properties gui.text_properties("dialogue")
 
-    xpos gui.dialogue_xpos
-    xsize gui.dialogue_width
+    xpos 495
+    xsize 694
     ypos gui.dialogue_ypos
 
     adjust_spacing False

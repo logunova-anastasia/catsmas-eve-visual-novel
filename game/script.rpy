@@ -1,11 +1,11 @@
-﻿# Вы можете расположить сценарий своей игры в этом файле.
+# Вы можете расположить сценарий своей игры в этом файле.
 
 # Определение персонажей игры.
-define e = Character('Кошко', color="#57100e")
+define e = Character('Кошко', color="#57100e", image='cat')
 
-define gui.text_font = "MADE TheArtist Sans PERSONAL USE.otf"
+image side cat = 'images/orange_cat.png'  
 
-define gui.text_size = 50
+define gui.text_size = 40
 
 define gui.name_text_size = 60
 
@@ -21,14 +21,6 @@ label start:
 
     scene aiiii:
         size(1920, 1080)
-
-    show kitty:
-        xalign -0.1 yalign -0.3
-
-    e "Я кот, всех с новай годай"
-
-    show kitty:
-        xalign -0.1 yalign -0.3
 
     e "Я кот, всех с новай годай"
 
@@ -69,7 +61,7 @@ label kitchen_wrong:
             e 'Салаты... Вкусно, но на подарок не пойдет'
             jump kitchen_wrong
         'Посмотреть на подоконнике':
-            e 'Бабушкины кактусы. Красивые, но кусать их не стоит. Знаю не понаслышке'
+            e 'Бабушкины кактусы. Красивые, но кусать их не стоит..'
             jump kitchen_wrong
 
     return

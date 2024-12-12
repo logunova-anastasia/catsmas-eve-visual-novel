@@ -114,7 +114,14 @@ screen say(who, what):
     ## По стандарту не показывается на варианте для мобильных устройств — мало
     ## места.
     if not renpy.variant("small"):
-        add SideImage() xalign -0.1 yalign 0.5 offset (-60, 340)
+        if renpy.get_say_image_tag() == 'chosen_orange_cat':   #let us show different characters(sprites) in different places
+            add SideImage() xalign 0.9 yalign 1.0 offset (60, 340)
+        elif renpy.get_say_image_tag() == 'chosen_grey_cat':
+            add SideImage() xalign -0.1 yalign 0.75 offset (20, 40)
+        elif renpy.get_say_image_tag() == 'chosen_white_cat':
+            add SideImage() xalign -0.1 yalign 0.25 offset (-50, -80)
+        else:
+            add SideImage() xalign -0.2 yalign 0.5 offset (-60, 340)  #default
 
 
 ## Делает namebox доступным для стилизации через объект Character.
@@ -204,13 +211,25 @@ style input:
 ## каждый с заголовком и полями действия.
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
+init:
+    $ changed_buttons = 0
 
 screen choice(items):
     style_prefix "choice"
 
-    vbox:
-        for i in items:
-            textbutton i.caption action i.action
+    if changed_buttons == 0:
+        vbox:
+            for i in items:
+                textbutton i.caption action i.action
+    elif changed_buttons == 1: #helps us to have special design of buttons only when we want it
+        vbox:
+            xalign 0.5
+            ypos 900
+            yanchor 0.5
+            for i in items:
+                button:
+                    text i.caption align (.5, .5)
+                    action i.action
 
 
 style choice_vbox is vbox

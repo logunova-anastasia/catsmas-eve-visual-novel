@@ -1,5 +1,14 @@
 # Вы можете расположить сценарий своей игры в этом файле.
 # Определение персонажей игры.
+init python:
+    import markovchain
+
+    text = open(renpy.loader.transfn('shakespeare.txt'))
+
+    text_model = markovchain.Markov(text)
+
+    like = 0
+
 define e = Character('Кошко', color="#57100e", image='cat')
 define cat_1 = Character("Барсик")
 define cat_2 = Character("Вася")
@@ -9,6 +18,8 @@ define chosen_orange_cat = Character("Барсик", image='chosen_orange_cat')
 define chosen_grey_cat = Character("Вася", image='chosen_grey_cat')
 define chosen_white_cat = Character("Яшка", image='chosen_white_cat')
 
+define m = Character('Безумная мышь', color="#57100e", image='rat')
+image side rat = 'images/rat.png' 
 
 define gui.text_font = "minecraft.ttf"
 image side cat = 'images/orange_cat.png'
@@ -28,8 +39,8 @@ default selected_character = None
 
 
 screen screen_1():
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/orange_cat.png" xalign 0.7 yalign -0.7
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
+    add "orange_cat.png" xalign 0.7 yalign -0.7
+    add "dialogue_window.png" xalign 0.3 yalign -0.2
     imagebutton:
         xalign 1.0 yalign 1.0
         idle Transform("gui/button/combo_button.png", size=(300, 300))
@@ -37,8 +48,8 @@ screen screen_1():
 
 
 screen screen_2():
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/grey_cat.png" xalign 0.75 yalign -5.0
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
+    add "grey_cat.png" xalign 0.75 yalign -5.0
+    add "dialogue_window.png" xalign 0.3 yalign -0.2
     text "Привет, Я Барсик!" xalign 0.3 yalign -0.2 size 30 color "#57100e"
     imagebutton:
         xalign 1.0 yalign 1.0
@@ -47,8 +58,8 @@ screen screen_2():
 
 
 screen screen_3():
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/white_cat.png" xalign 0.7 yalign -5.0
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
+    add "white_cat.png" xalign 0.7 yalign -5.0
+    add "dialogue_window.png" xalign 0.3 yalign -0.2
     imagebutton:
         xalign 1.0 yalign 1.0
         idle Transform("gui/button/combo_button.png", size=(300, 300))
@@ -57,7 +68,7 @@ screen screen_3():
 
 # Главный экран, который показывает текущий экран
 screen background():
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/aiiii.png" xsize 1920 ysize 1080
+    add "aiiii.png" xsize 1920 ysize 1080
     if current_screen == 0:
         use screen_1()
     elif current_screen == 1:
@@ -71,6 +82,21 @@ screen next_button():
         idle Transform("gui/button/pngwing.com.png", size=(300, 300))
         action [Hide("background"), Jump('kitchen')]
 
+label Msay: # Make NPC say something.
+    $ mString = text_model.generate_markov_text(4)
+    m "%(mString)s"
+    return
+
+label MenuTwo: #two menu choices
+    $ mStringA = text_model.generate_markov_text(5)
+    menu:
+        "%(mStringA)s":
+            $ choice = 1
+            $ like += 1
+            return
+        "Э-э, наверное?...":
+            $ choice = 2
+            return
 
 # Вместо использования оператора image можете просто
 # складывать все ваши файлы изображений в папку images.
@@ -170,4 +196,17 @@ label kitchen_end:
         current_character 'Подарок найден с первой попытки!'
         $ gifts = gifts + 1
 
+    jump first_mouse
+
     return
+
+label first_mouse:
+    scene kitchen:
+        size(1920, 1080)
+    
+    call Msay
+
+    call MenuTwo
+
+    return
+

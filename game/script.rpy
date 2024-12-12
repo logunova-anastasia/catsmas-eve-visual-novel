@@ -9,7 +9,6 @@ init python:
 
     like = 0
 
-define e = Character('Кошко', color="#57100e", image='cat')
 define cat_1 = Character("Барсик")
 define cat_2 = Character("Вася")
 define cat_3 = Character("Яшка")
@@ -19,10 +18,9 @@ define chosen_grey_cat = Character("Вася", image='chosen_grey_cat')
 define chosen_white_cat = Character("Яшка", image='chosen_white_cat')
 
 define m = Character('Безумная мышь', color="#57100e", image='rat')
-image side rat = 'images/rat.png' 
+image side rat = "images/rat.png"
 
 define gui.text_font = "minecraft.ttf"
-image side cat = 'images/orange_cat.png'
 image side chosen_orange_cat = "images/orange_cat.png"
 image side chosen_grey_cat = "images/grey_cat.png"
 image side chosen_white_cat = "images/white_cat.png"

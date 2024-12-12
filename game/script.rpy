@@ -5,10 +5,18 @@ define cat_1 = Character("Барсик")
 define cat_2 = Character("Вася")
 define cat_3 = Character("Яшка")
 
+define chosen_orange_cat = Character("Барсик", image='chosen_orange_cat')
+define chosen_grey_cat = Character("Вася", image='chosen_grey_cat')
+define chosen_white_cat = Character("Яшка", image='chosen_white_cat')
+
 
 define gui.text_font = "minecraft.ttf"
 image side cat = 'images/orange_cat.png'
+image side chosen_orange_cat = "images/orange_cat.png"
+image side chosen_grey_cat = "images/grey_cat.png"
+image side chosen_white_cat = "images/white_cat.png"
 
+default current_image = None
 
 define gui.text_size = 40
 define gui.name_text_size = 60
@@ -20,8 +28,8 @@ default selected_character = None
 
 
 screen screen_1():
-    add "D:/RENPY/Christmas_cat_project/christmas-cat/game/images/orange_cat.png" xalign 0.7 yalign -0.7
-    add "D:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
+    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/orange_cat.png" xalign 0.7 yalign -0.7
+    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
     imagebutton:
         xalign 1.0 yalign 1.0
         idle Transform("gui/button/combo_button.png", size=(300, 300))
@@ -29,8 +37,8 @@ screen screen_1():
 
 
 screen screen_2():
-    add "D:/RENPY/Christmas_cat_project/christmas-cat/game/images/grey_cat.png" xalign 0.75 yalign -5.0
-    add "D:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
+    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/grey_cat.png" xalign 0.75 yalign -5.0
+    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
     text "Привет, Я Барсик!" xalign 0.3 yalign -0.2 size 30 color "#57100e"
     imagebutton:
         xalign 1.0 yalign 1.0
@@ -39,9 +47,8 @@ screen screen_2():
 
 
 screen screen_3():
-    add "D:/RENPY/Christmas_cat_project/christmas-cat/game/images/white_cat.png" xalign 0.7 yalign -5.0
-    add "D:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
-    text ' 54323456789'
+    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/white_cat.png" xalign 0.7 yalign -5.0
+    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
     imagebutton:
         xalign 1.0 yalign 1.0
         idle Transform("gui/button/combo_button.png", size=(300, 300))
@@ -50,7 +57,7 @@ screen screen_3():
 
 # Главный экран, который показывает текущий экран
 screen background():
-    add "D:/RENPY/Christmas_cat_project/christmas-cat/game/images/aiiii.png" xsize 1920 ysize 1080
+    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/aiiii.png" xsize 1920 ysize 1080
     if current_screen == 0:
         use screen_1()
     elif current_screen == 1:
@@ -58,17 +65,19 @@ screen background():
     elif current_screen == 2:
         use screen_3()
 
-
 screen next_button():
     imagebutton:
         xalign 0.9 yalign 0.1
         idle Transform("gui/button/pngwing.com.png", size=(300, 300))
         action [Hide("background"), Jump('kitchen')]
 
+
 # Вместо использования оператора image можете просто
 # складывать все ваши файлы изображений в папку images.
 # Например, сцену bg room можно вызвать файлом "bg room.png",
 # а eileen happy — "eileen happy.webp", и тогда они появятся в игре.
+
+
 
 # Игра начинается здесь:
 label start:
@@ -110,21 +119,30 @@ label kitchen:
     hide screen next_button
     scene kitchen:
         size(1920, 1080)
-    
+
+
+    if selected_character == cat_1:
+        $ current_character = chosen_orange_cat
+    elif selected_character == cat_2:
+        $ current_character = chosen_grey_cat
+    elif selected_character == cat_3:
+        $ current_character = chosen_white_cat
+
+
+
     menu:
         'Посмотреть под столом':
-            e 'Ура! Кастрюльки для бабушки, первый подарок найден!'
+            current_character "Ура! Кастрюльки для бабушки, первый подарок найден!"
             $ gift_kitchen = True
             jump kitchen_end
         'Посмотреть на камоде':
-            e 'Салаты... Вкусно, но на подарок не пойдет'
+            current_character "Салаты... Вкусно, но на подарок не пойдет"
             $ gift_kitchen = False
             jump kitchen_wrong
         'Посмотреть на подоконнике':
-            e 'Бабушкины кактусы. Красивые, но кусать их не стоит. Знаю не понаслышке'
+            current_character "Бабушкины кактусы. Красивые, но кусать их не стоит. Знаю не понаслышке"
             $ gift_kitchen = False
             jump kitchen_wrong
-
     return
 
 label kitchen_wrong:
@@ -133,13 +151,13 @@ label kitchen_wrong:
     
     menu:
         'Посмотреть под столом':
-            e 'Ура! Кастрюльки для бабушки, первый подарок найден!'
+            current_character 'Ура! Кастрюльки для бабушки, первый подарок найден!'
             jump kitchen_end
         'Посмотреть на камоде':
-            e 'Салаты... Вкусно, но на подарок не пойдет'
+            current_character 'Салаты... Вкусно, но на подарок не пойдет'
             jump kitchen_wrong
         'Посмотреть на подоконнике':
-            e 'Бабушкины кактусы. Красивые, но кусать их не стоит..'
+            current_character 'Бабушкины кактусы. Красивые, но кусать их не стоит..'
             jump kitchen_wrong
 
     return
@@ -149,7 +167,7 @@ label kitchen_end:
         size(1920, 1080)
     
     if gift_kitchen == True:
-        e 'Подарок найден с первой попытки!'
+        current_character 'Подарок найден с первой попытки!'
         $ gifts = gifts + 1
 
     return

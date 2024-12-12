@@ -114,7 +114,14 @@ screen say(who, what):
     ## По стандарту не показывается на варианте для мобильных устройств — мало
     ## места.
     if not renpy.variant("small"):
-        add SideImage() xalign -0.1 yalign 0.5 offset (-60, 340)
+        if renpy.get_say_image_tag() == 'chosen_orange_cat':   #let us show different characters(sprites) in different places
+            add SideImage() xalign 0.9 yalign 1.0 offset (60, 340)
+        elif renpy.get_say_image_tag() == 'chosen_grey_cat':
+            add SideImage() xalign -0.1 yalign 0.75 offset (20, 40)
+        elif renpy.get_say_image_tag() == 'chosen_white_cat':
+            add SideImage() xalign -0.1 yalign 0.25 offset (-50, -80)
+        else:
+            add SideImage() xalign -0.2 yalign 0.5 offset (-60, 340)  #default
 
 
 ## Делает namebox доступным для стилизации через объект Character.

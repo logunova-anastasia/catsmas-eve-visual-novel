@@ -28,8 +28,8 @@ default selected_character = None
 
 
 screen screen_1():
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/orange_cat.png" xalign 0.7 yalign -0.7
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
+    add "orange_cat.png" xalign 0.7 yalign -0.7
+    add "dialogue_window.png" xalign 0.3 yalign -0.2
     imagebutton:
         xalign 1.0 yalign 1.0
         idle Transform("gui/button/combo_button.png", size=(300, 300))
@@ -37,8 +37,8 @@ screen screen_1():
 
 
 screen screen_2():
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/grey_cat.png" xalign 0.75 yalign -5.0
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
+    add "grey_cat.png" xalign 0.75 yalign -5.0
+    add "dialogue_window.png" xalign 0.3 yalign -0.2
     text "Привет, Я Барсик!" xalign 0.3 yalign -0.2 size 30 color "#57100e"
     imagebutton:
         xalign 1.0 yalign 1.0
@@ -47,8 +47,8 @@ screen screen_2():
 
 
 screen screen_3():
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/white_cat.png" xalign 0.7 yalign -5.0
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/dialogue_window.png" xalign 0.3 yalign -0.2
+    add "white_cat.png" xalign 0.7 yalign -5.0
+    add "dialogue_window.png" xalign 0.3 yalign -0.2
     imagebutton:
         xalign 1.0 yalign 1.0
         idle Transform("gui/button/combo_button.png", size=(300, 300))
@@ -57,7 +57,7 @@ screen screen_3():
 
 # Главный экран, который показывает текущий экран
 screen background():
-    add "G:/RENPY/Christmas_cat_project/christmas-cat/game/images/aiiii.png" xsize 1920 ysize 1080
+    add "aiiii.png" xsize 1920 ysize 1080
     if current_screen == 0:
         use screen_1()
     elif current_screen == 1:

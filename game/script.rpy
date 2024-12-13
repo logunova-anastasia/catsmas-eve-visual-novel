@@ -35,6 +35,8 @@ default gifts = 0
 default current_screen = 0
 default selected_character = None
 
+define audio.morning = "audio/morning.mp3"
+
 
 screen screen_1():
     add "orange_cat.png" xalign 0.7 yalign -0.7
@@ -138,12 +140,11 @@ label start:
             xalign 0.1 yalign 0.3
         cat_3 "Слова Яшки"
 
-
-label kitchen:
+label morning:
+    play audio morning
     hide screen next_button
-    scene kitchen:
+    scene living-room:
         size(1920, 1080)
-
 
     if selected_character == cat_1:
         $ current_character = chosen_orange_cat
@@ -152,7 +153,18 @@ label kitchen:
     elif selected_character == cat_3:
         $ current_character = chosen_white_cat
 
+    current_character "Зимнее утро пробивалось сквозь зашторенное окно. Морозные узоры и искрящийся от света снег выглядели завораживающе, почти волшебно."
+    current_character "Я смотрел на эту игру лучей прищуренными от сна глазами, ожидая пробуждения остальных жителей дома."
+    current_character "Хотелось завтракать, но я люблю есть в компании с кем-то, в конце концов, кто знает, может мне перепадет что-то вкусное со стола."
+    current_character "Сегодня же был необычный день - канун Рождества."
+    current_character "Люди покупают вещи, которые хотят другие люди, заворачивают в шуршащие бумаги и ленты, а на следующий день разворачивают их обратно и очень громко общаются."
+    current_character "Потом они все садятся за стол и едят вкусную еду. "
+    current_character "В такое время хозяйка даже не ругается на дочь и внуков, когда те дают мне кусочки мяса из своих тарелок."
+    current_character "Со второго этажа донеслись скрипы матраса и шлепки шагов. Это встали внуки хозяйки. Кажется, те никогда не оставляли меня в покое."
 
+label kitchen:
+    scene kitchen:
+        size(1920, 1080)
 
     menu:
         'Посмотреть под столом':

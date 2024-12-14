@@ -17,8 +17,14 @@ define chosen_orange_cat = Character("Барсик", image='chosen_orange_cat')
 define chosen_grey_cat = Character("Вася", image='chosen_grey_cat')
 define chosen_white_cat = Character("Яшка", image='chosen_white_cat')
 
-define m = Character('Безумная мышь', color="#57100e", image='rat')
+define rat = Character('Безумная мышь', image='rat')
 image side rat = "images/rat.png"
+
+define son = Character('Кирилл', image='son')
+image side son = "images/son.png"
+
+define mom = Character('Екатерина', image='mom')
+image side mom = "images/mom.png"
 
 define gui.text_font = "minecraft.ttf"
 image side chosen_orange_cat = "images/orange_cat.png"
@@ -84,7 +90,7 @@ screen next_button():
 
 label Msay: # Make NPC say something.
     $ mString = text_model.generate_markov_text(4)
-    m "%(mString)s"
+    rat "%(mString)s"
     return
 
 label MenuTwo: #two menu choices
@@ -161,6 +167,23 @@ label morning:
     current_character "Потом они все садятся за стол и едят вкусную еду. "
     current_character "В такое время хозяйка даже не ругается на дочь и внуков, когда те дают мне кусочки мяса из своих тарелок."
     current_character "Со второго этажа донеслись скрипы матраса и шлепки шагов. Это встали внуки хозяйки. Кажется, те никогда не оставляли меня в покое."
+
+    son "[current_character], иди сюда! Доброе утро!"
+    current_character "О чем и речь. Старший спустился первым и тут же подошел ко мне. Я бы предпочел, чтобы меня вообще не трогали, но уж лучше он, чем его сестра."
+    current_character "Хотя бы почесывания за ухом были приятными."
+    current_character "Когда мне надоело, я вывернулся, спрыгнул с кресла и пошел на кухню. К счастью, наш парень был из понятливых - миска оказалась полной быстро."
+    current_character "На втором этаже снова заскрипели кровать - это встали хозяйка с дочерью. К моменту, когда я закончил с едой, все жители дома были либо в гостиной, либо на кухне."
+    current_character "Я забрался на полку повыше, чтобы внучка хозяйки, Надя, не могла дотянуться до меня и наблюдал за утренней возней."
+    current_character "Говорливая девчонка обсуждала подарки и все пыталась узнать, где они хранятся и что из себя представляют. Старшие старались держаться под её натиском."
+
+    $ renpy.notify("Обращайте внимание на выделенные реплики в речи героев. Возможно, они будут полезны вам позже…")
+
+    mom "Ты ведь ничего не расскажешь бабушке?"
+    current_character "Девочка активно затрясла головой из стороны в сторону. Я тоже прислушался."
+    current_character "Может, я не дарил и не получал подарки, но интерес это не уменьшало."
+    mom "Я спрятала кое-что {b}в тумбе у холодильника.{/b} Только это наш секрет, хорошо?"
+
+
 
 label kitchen:
     scene kitchen:

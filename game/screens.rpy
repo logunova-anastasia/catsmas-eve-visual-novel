@@ -126,6 +126,12 @@ screen say(who, what):
             add SideImage() yalign 1.0 xalign -0.1
         elif renpy.get_say_image_tag() == 'mom':
             add SideImage() yalign 1.0 xalign -0.2
+        elif renpy.get_say_image_tag() == 'dad':
+            add SideImage() yalign 1.0 xalign -0.2    
+        elif renpy.get_say_image_tag() == 'grandma':
+            add SideImage() yalign 1.2 xalign -0.15
+        elif renpy.get_say_image_tag() == 'daughter':
+            add SideImage() yalign 1.4 xalign -0.25
         else:
             add SideImage() xalign -0.2 yalign 0.5 offset (-60, 340)  #default
 

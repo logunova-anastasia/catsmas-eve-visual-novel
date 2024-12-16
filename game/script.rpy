@@ -267,6 +267,7 @@ label kitchen:
 
     menu:
         'Посмотреть под столом':
+            scene pots
             current_character "Ура! Кастрюльки для бабушки, первый подарок найден!"
             $ gift_kitchen = True
             jump kitchen_end
@@ -286,6 +287,7 @@ label kitchen_wrong:
     
     menu:
         'Посмотреть под столом':
+            scene pots
             current_character 'Ура! Кастрюльки для бабушки, первый подарок найден!'
             jump kitchen_end
         'Посмотреть на камоде':

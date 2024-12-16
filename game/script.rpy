@@ -9,6 +9,10 @@ init python:
 
     like = 0
 
+init python:
+    onn = ImageDissolve("eye.png", 2.0, 20, reverse=False) 
+    off = ImageDissolve("eye.png", 2.0, 20, reverse=True)
+
 define cat_1 = Character("Барсик")
 define cat_2 = Character("Вася")
 define cat_3 = Character("Яшка")
@@ -93,9 +97,9 @@ screen background():
 
 screen next_button():
     imagebutton:
-        xalign 0.9 yalign 0.1
-        idle Transform("gui/button/pngwing.com.png", size=(300, 300))
-        action [Hide("background"), Jump('kitchen')]
+        xalign 0.65 yalign 0.34
+        idle Transform("gui/button/pngwing.com.png", size=(343, 167))
+        action [Hide("background"), Jump('morning')]
 
 label Msay: # Make NPC say something.
     $ mString = text_model.generate_markov_text(4)
@@ -206,8 +210,11 @@ label morning:
     current_character "Несмотря на интересные запахи из коридора, я не был готов к очередным попыткам привести себя в порядок после чужих прикосновений."
     current_character "На втором этаже дверь хозяйки оказалась открытой."
     current_character "Устроившись у неё в кресле, я задремал."
+    
+    scene black with off 
+    pause 1.0
+    scene living-room with onn
 
-    current_character "..."
     current_character "Проснувшись, я не заметил никого в комнате и решил спуститься на первый этаж."
     current_character "Уже на верхней ступени я услышал, как разговаривают на повышенных тонах."
     mom "Я же три раза просила тебя добавить их в список! Сейчас уже нет времени искать по магазинам, как я должна готовить этот салат?!"
@@ -229,8 +236,26 @@ label morning:
     son "Она снова лезла в мои вещи!"
     daughter "А он забрал мой дневник!"
 
+    mom "Всем нужно разругаться накануне праздника! Решайте все сами!"
+    current_character "Полотенце, которое до этого было у неё в руках, улетело на столешницу."
+    current_character "Я инстинктивно прижался к стене, когда она пронеслась мимо на второй этаж."
+    current_character "Отец семейства растерянно посмотрел ей вслед, но уже более собранно повернулся к остальным."
+    dad "Надя, нельзя в чужие вещи лезть без спроса. Кирилл, верни сестре дневник."
+    dad "Елена Викторовна, Вы извините, что так вышло…"
+    grandma "Дело житейское, Володь, но вы уж полегче друг с другом."
+    current_character "Владимир кивнул и, грозно посмотрев на детей, пошел наверх."
+    current_character "Дети же обменялись грозными взглядами."
+    son "Я пойду пройдусь, бабуль."
+    daughter "Верни мой дневник!"
+    son "Да сдался он мне! Посмотри в своем бардаке!"
 
-
+    current_character "Хозяйка охнула и пошла за внуком в прихожую, а младшая, громко топая и вытирая слезы, убежала наверх."
+    current_character "В этой семейке сейчас и сами перессорятся, и хозяйку расстроят. А если ей плохо станет?"
+    current_character "Как их помирить?"
+    current_character "Я осмотрелся вокруг и невольно засмотрелся на мигающую гирлянду на елке."
+    current_character "Точно! Елка и подарки!"
+    current_character "Когда они соберутся рядом с елкой и увидят подарки, которые сами туда не клали, они обрадуются."
+    current_character "Я сделаю им новогоднее чудо и попробую им помочь!"
 
 
 

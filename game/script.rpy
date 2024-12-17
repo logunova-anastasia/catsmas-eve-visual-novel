@@ -1,6 +1,14 @@
 # Вы можете расположить сценарий своей игры в этом файле.
 # Определение персонажей игры.
-define e = Character('Кошко', color="#57100e", image='cat')
+init python:
+    import markovchain
+
+    text = open(renpy.loader.transfn('shakespeare.txt'))
+
+    text_model = markovchain.Markov(text)
+
+    like = 0
+
 define cat_1 = Character("Барсик")
 define cat_2 = Character("Вася")
 define cat_3 = Character("Яшка")
@@ -9,9 +17,10 @@ define chosen_orange_cat = Character("Барсик", image='chosen_orange_cat')
 define chosen_grey_cat = Character("Вася", image='chosen_grey_cat')
 define chosen_white_cat = Character("Яшка", image='chosen_white_cat')
 
+define m = Character('Безумная мышь', color="#57100e", image='rat')
+image side rat = "images/rat.png"
 
 define gui.text_font = "minecraft.ttf"
-image side cat = 'images/orange_cat.png'
 image side chosen_orange_cat = "images/orange_cat.png"
 image side chosen_grey_cat = "images/grey_cat.png"
 image side chosen_white_cat = "images/white_cat.png"
@@ -71,6 +80,21 @@ screen next_button():
         idle Transform("gui/button/pngwing.com.png", size=(300, 300))
         action [Hide("background"), Jump('kitchen')]
 
+label Msay: # Make NPC say something.
+    $ mString = text_model.generate_markov_text(4)
+    m "%(mString)s"
+    return
+
+label MenuTwo: #two menu choices
+    $ mStringA = text_model.generate_markov_text(5)
+    menu:
+        "%(mStringA)s":
+            $ choice = 1
+            $ like += 1
+            return
+        "Э-э, наверное?...":
+            $ choice = 2
+            return
 
 # Вместо использования оператора image можете просто
 # складывать все ваши файлы изображений в папку images.
@@ -170,4 +194,17 @@ label kitchen_end:
         current_character 'Подарок найден с первой попытки!'
         $ gifts = gifts + 1
 
+    jump first_mouse
+
     return
+
+label first_mouse:
+    scene kitchen:
+        size(1920, 1080)
+    
+    call Msay
+
+    call MenuTwo
+
+    return
+

@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 24: screen expects a non-empty block.
-    screen ourScreen():
-                       ^
-
-File "game/script.rpy", line 26: end of line expected.
-    textbutton "Click me, I do stuff!":
-                                      ^
+File "game/script.rpy", line 11: expected statement.
+    orange_cat_1 = "Барсик"
+                 ^
 
 Ren'Py Version: Ren'Py 8.3.3.24111502
-Wed Nov 20 13:49:33 2024
+Thu Dec 12 02:33:22 2024

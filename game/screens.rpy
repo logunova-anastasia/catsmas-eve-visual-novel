@@ -120,6 +120,8 @@ screen say(who, what):
             add SideImage() xalign -0.1 yalign 0.75 offset (20, 40)
         elif renpy.get_say_image_tag() == 'chosen_white_cat':
             add SideImage() xalign -0.1 yalign 0.25 offset (-50, -80)
+        elif renpy.get_say_image_tag() == 'rat':
+            add SideImage() yalign 1.0 
         else:
             add SideImage() xalign -0.2 yalign 0.5 offset (-60, 340)  #default
 

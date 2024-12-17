@@ -119,7 +119,7 @@ screen say(who, what):
         elif renpy.get_say_image_tag() == 'chosen_grey_cat':
             add SideImage() xalign -0.15 yalign 0.75 offset (20, 40)
         elif renpy.get_say_image_tag() == 'chosen_white_cat':
-            add SideImage() xalign -0.1 yalign 0.1 offset (-50, -80)
+            add SideImage() xalign -0.12 yalign 1.2
         elif renpy.get_say_image_tag() == 'rat':
             add SideImage() yalign 1.0 
         elif renpy.get_say_image_tag() == 'son':

@@ -13,13 +13,13 @@ init python:
     onn = ImageDissolve("eye.png", 2.0, 20, reverse=False) 
     off = ImageDissolve("eye.png", 2.0, 20, reverse=True)
 
-define cat_1 = Character("Барсик")
-define cat_2 = Character("Вася")
-define cat_3 = Character("Яшка")
+define cat_1 = Character("Оскар")
+define cat_2 = Character("Том")
+define cat_3 = Character("Марс")
 
-define chosen_orange_cat = Character("Барсик", image='chosen_orange_cat')
-define chosen_grey_cat = Character("Вася", image='chosen_grey_cat')
-define chosen_white_cat = Character("Яшка", image='chosen_white_cat')
+define chosen_orange_cat = Character("Оскар", image='chosen_orange_cat')
+define chosen_grey_cat = Character("Том", image='chosen_grey_cat')
+define chosen_white_cat = Character("Марс", image='chosen_white_cat')
 
 define rat = Character('Безумная мышь', image='rat')
 image side rat = "images/rat.png"
@@ -39,6 +39,8 @@ image side dad = "images/dad.png"
 define grandma = Character('Хозяйка', image='grandma')
 image side grandma = "images/grandma.png"
 
+define author = Character('')
+
 define gui.text_font = "minecraft.ttf"
 image side chosen_orange_cat = "images/orange_cat.png"
 image side chosen_grey_cat = "images/grey_cat.png"
@@ -56,32 +58,30 @@ default selected_character = None
 
 define audio.morning = "audio/morning.mp3"
 
-
 screen screen_1():
     add "orange_cat.png" xalign 0.7 yalign -0.7
-    add "dialogue_window.png" xalign 0.3 yalign -0.2
+    add "oscar_bubble.png" xalign 0.63 yalign 0.1
     imagebutton:
-        xalign 1.0 yalign 1.0
-        idle Transform("gui/button/combo_button.png", size=(300, 300))
+        xalign 1.0 yalign 0.9
+        idle Transform("gui/button/combo_button.png")
         action SetVariable("current_screen", (current_screen + 1) % 3)
 
 
 screen screen_2():
     add "grey_cat.png" xalign 0.75 yalign -5.0
-    add "dialogue_window.png" xalign 0.3 yalign -0.2
-    text "Привет, Я Барсик!" xalign 0.3 yalign -0.2 size 30 color "#57100e"
+    add "tom_bubble.png" xalign 0.69 yalign 0.1
     imagebutton:
-        xalign 1.0 yalign 1.0
-        idle Transform("gui/button/combo_button.png", size=(300, 300))
+        xalign 1.0 yalign 0.9
+        idle Transform("gui/button/combo_button.png")
         action SetVariable("current_screen", (current_screen + 1) % 3)
 
 
 screen screen_3():
     add "white_cat.png" xalign 0.7 yalign -5.0
-    add "dialogue_window.png" xalign 0.3 yalign -0.2
+    add "mars_bubble.png" xalign 0.65 yalign 0.1
     imagebutton:
-        xalign 1.0 yalign 1.0
-        idle Transform("gui/button/combo_button.png", size=(300, 300))
+        xalign 1.0 yalign 0.9
+        idle Transform("gui/button/combo_button.png")
         action SetVariable("current_screen", (current_screen + 1) % 3)
 
 
@@ -126,21 +126,22 @@ label MenuTwo: #two menu choices
 
 # Игра начинается здесь:
 label start:
+    scene aiiii
+    author "Ваша история скоро начнется. Для начала выберите персонажа."
     show screen background
     # Показать главный экран
-    scene aiiii:
-        size(1920, 1080)
+    scene aiiii
 
     $ changed_buttons = 1 #эта переменная позволяет применить индивид. стиль к кнопкам выбора.
     # если нужен стандарт, то пишем $ changed_buttons = 0
     menu:
-        "Котик Барсик":
+        "Котик Оскар":
             $ selected_character = cat_1
 
-        "Котик Вася":
+        "Котик Том":
             $ selected_character = cat_2
 
-        "Котик Яшка":
+        "Котик Марс":
             $ selected_character = cat_3
 
     hide screen background
@@ -149,21 +150,20 @@ label start:
     if selected_character == cat_1:
         show orange_cat:
             xalign 0.05 yalign 0.1
-        cat_1 "Слова Барсика"
+        cat_1 "Привет, я Оскар!"
     elif selected_character == cat_2:
         show grey_cat:
             xalign 0.1 yalign 0.3
-        cat_2 "Слова Васи"
+        cat_2 "Привет, я Том!"
     elif selected_character == cat_3:
         show white_cat:
             xalign 0.1 yalign 0.3
-        cat_3 "Слова Яшки"
+        cat_3 "Привет, я Марс!"
 
 label morning:
     play audio morning
     hide screen next_button
-    scene living-room:
-        size(1920, 1080)
+    scene living-room
 
     if selected_character == cat_1:
         $ current_character = chosen_orange_cat
@@ -257,67 +257,258 @@ label morning:
     current_character "Когда они соберутся рядом с елкой и увидят подарки, которые сами туда не клали, они обрадуются."
     current_character "Я сделаю им новогоднее чудо и попробую им помочь!"
 
+    scene black with off 
+    pause 1.0
+    scene living-room with onn
 
-
+    current_character "Начинать надо прямо сейчас."
+    current_character "До вечера осталось совсем мало времени."
+    current_character "Я решил начать с кухни: дочь хозяйки как раз дала подсказку, где искать. Спрыгнув со ступеней на пол, я забежал на кухню."
 
 
 label kitchen:
-    scene kitchen:
-        size(1920, 1080)
+    scene kitchen
+
+    current_character "Со столешницы ориентироваться будет явно проще."
+    current_character "Запрыгнув и обойдя разложенные на поверхности продукты, я осмотрелся."
+    current_character "Где искать подарок?"
 
     menu:
-        'Посмотреть под столом':
-            scene pots
-            current_character "Ура! Кастрюльки для бабушки, первый подарок найден!"
-            $ gift_kitchen = True
-            jump kitchen_end
-        'Посмотреть на камоде':
-            current_character "Салаты... Вкусно, но на подарок не пойдет"
+        'Шкафчик над плитой':
+            current_character "Я попытался открыть дверцу, но оттуда на меня чуть не рассыпалась паста."
+            current_character "Попытавшись увернуться, я чуть не обжегся об остывающую плиту."
+            grandma "[current_character], а ты куда залез? Слезай отсюда, негодник!"
+            current_character "В дверном проеме стояла хозяйка и грозно смотрела на меня."
+            current_character "Пока я пытался сориентироваться, она подошла и спустила меня на пол."
+            grandma "Иди погуляй в другом месте, сюда котику нельзя!"
+            current_character "Мне не оставалось ничего, кроме как отправиться дальше."
             $ gift_kitchen = False
             jump kitchen_wrong
-        'Посмотреть на подоконнике':
-            current_character "Бабушкины кактусы. Красивые, но кусать их не стоит. Знаю не понаслышке"
+        'Тумба около холодильника':
+            current_character "По началу дверь не поддалась, но в итоге я смог приоткрыть её так, чтобы суметь пролезть."
+            current_character "Многочисленные формы для тортов и кексов были знакомы за годы жизни с хозяйкой."
+            current_character "Я хотел было вылезти, но тут в дальнем углу блеснула ручка кастрюли."
+            current_character "Такого тут не должно было быть, кастрюли стояли на другой полке."
+            current_character "Вспомнилось, что хозяйку отчаянно не пускали к готовке под предлогом помощи."
+            current_character "Я протиснулся поближе и увидел набор новых кастрюль."
+            scene pots
+            current_character "Вот оно! Первый подарок нашелся! Хозяйка будет довольна."
+            $ renpy.notify("Вы нашли первый подарок!")
+            $ gift_kitchen = True
+            jump kitchen_end
+        'Тумба под раковиной':
+            current_character "Вдруг я услышал приближающиеся голоса хозяйки и её внука."
+            current_character "Я не успел убрать хвост и меня заметили."
+            grandma "[current_character], а ты куда залез? Выходи отсюда, негодник!"
+            current_character "Дверца тумбы полностью открылась, и хозяйка грозно заглянула внутрь."
+            current_character "Я не успел выскочить, как меня вытащили наружу и поставили на пол."
+            grandma "Иди погуляй в другом месте, сюда котику нельзя!"
+            current_character "Мне не оставалось ничего, кроме как отправиться дальше."
             $ gift_kitchen = False
             jump kitchen_wrong
     return
 
 label kitchen_wrong:
-    scene kitchen:
-        size(1920, 1080)
-    
+    scene kitchen
     menu:
-        'Посмотреть под столом':
-            scene pots
-            current_character 'Ура! Кастрюльки для бабушки, первый подарок найден!'
-            jump kitchen_end
-        'Посмотреть на камоде':
-            current_character 'Салаты... Вкусно, но на подарок не пойдет'
+        'Шкафчик над плитой':
+            current_character "Я попытался открыть дверцу, но оттуда на меня чуть не рассыпалась паста."
+            current_character "Попытавшись увернуться, я чуть не обжегся об остывающую плиту."
+            grandma "[current_character], а ты куда залез? Слезай отсюда, негодник!"
+            current_character "В дверном проеме стояла хозяйка и грозно смотрела на меня."
+            current_character "Пока я пытался сориентироваться, она подошла и спустила меня на пол."
+            grandma "Иди погуляй в другом месте, сюда котику нельзя!"
+            current_character "Мне не оставалось ничего, кроме как выйти из кухни и дождаться, пока хозяйка выйдет."
+            current_character "Как только она снова скрылась в коридоре, я вернулся на кухню."
             jump kitchen_wrong
-        'Посмотреть на подоконнике':
-            current_character 'Бабушкины кактусы. Красивые, но кусать их не стоит..'
+        'Тумба около холодильника':
+            current_character "По началу дверь не поддалась, но в итоге я смог приоткрыть её так, чтобы суметь пролезть."
+            current_character "Многочисленные формы для тортов и кексов были знакомы за годы жизни с хозяйкой."
+            current_character "Я хотел было вылезти, но тут в дальнем углу блеснула ручка кастрюли."
+            current_character "Такого тут не должно было быть, кастрюли стояли на другой полке."
+            current_character "Вспомнилось, что хозяйку отчаянно не пускали к готовке под предлогом помощи."
+            current_character "Я протиснулся поближе и увидел набор новых кастрюль."
+            scene pots
+            current_character "Вот оно! Первый подарок нашелся! Хозяйка будет довольна."
+            current_character "В этот момент я почувствовал, как меня подняли руки хозяйки."
+            current_character "Я мявкнул от неожиданности и оказался за порогом кухни."
+            grandma "Ну какой неугомонный кот! Иди, [current_character]!"
+            $ renpy.notify("Упс! Вы не успели забрать подарок!")
+
+            jump kitchen_end
+        'Тумба под раковиной':
+            current_character "Вдруг я услышал приближающиеся голоса хозяйки и её внука."
+            current_character "Я не успел убрать хвост и меня заметили."
+            grandma "[current_character], а ты куда залез? Выходи отсюда, негодник!"
+            current_character "Дверца тумбы полностью открылась, и хозяйка грозно заглянула внутрь."
+            current_character "Я не успел выскочить, как меня вытащили наружу и поставили на пол."
+            grandma "Иди погуляй в другом месте, сюда котику нельзя!"
+            current_character "Мне не оставалось ничего, кроме как выйти из кухни и дождаться, пока хозяйка выйдет."
+            current_character "Как только она снова скрылась в коридоре, я вернулся на кухню."
             jump kitchen_wrong
 
     return
 
 label kitchen_end:
-    scene kitchen:
-        size(1920, 1080)
+    scene kitchen
     
     if gift_kitchen == True:
         current_character 'Подарок найден с первой попытки!'
         $ gifts = gifts + 1
 
-    jump first_mouse
+label second_floor:
+    scene hallway
+    
+    current_character "После кухни я направился на второй этаж."
+    current_character "Я помнил секрет, которым поделилась Надя."
+    current_character "Детская находилась в самом конце коридора, рядом с лестницей на чердак."
+    current_character "По пути я невольно услышал тихие переговоры Катерины и Владимира."
+
+    scene bedroom
+    dad 'Мы хорошо отпразднуем и без этого салата.'
+    dad 'А завтра я съезжу за продуктами и мы вместе сделаем этот салат.'
+    mom "Я знаю, но мы каждый год его делаем! Это такая семейная традиция!..."
+
+    scene hallway
+    current_character "Я оставил их разбираться со своей ссорой и пошел дальше."
+    current_character "Почему-то у Катерины был пунктик насчет традиций, которые ежегодно становились камнем преткновения в праздники."
+    current_character "Вдруг из-за угла, ведущего в конец коридора, послышался писк."
+    current_character "Я резко обернулся."
+    current_character "Мышей у нас давно не заводилось, они знали, что тут живу я."
+    current_character "Я подкрался и заглянул за угол."
+    current_character "Там сидела и умывалась серая мышь."
+    current_character "Она не выглядела обеспокоенной моим запахом по всему дому."
+    current_character "Она даже не замечала моего присутствия, как сделал бы любой приличный грызун."
+    current_character "Ну здравствуй, мышка."
+    current_character "Я хотел припугнуть обнаглевшего гостя и немного оскалился."
+    current_character "Мышь оглянулась на меня, но не выглядела даже взволнованной."
+
+label first_mouse:
+    scene hallway
+    
+    call Msay
+    $ renpy.notify("Мышь запомнит ваш ответ!")
+    call MenuTwo
+    
+label children:
+    current_character "Мышь повернула голову на бок, но больше никак не отреагировала."
+    current_character "После этого она и вовсе отвернулась и убежала в неприметную дырку в плинтусе, которую я до этого не замечал."
+
+    scene children
+    current_character "…В детской оказалась Надя, которая очень усердно что-то рисовала, сидя на кровати."
+    current_character "Ее увлеченность дала мне немного времени."
+    current_character "Я забрался на стул и осмотрелся. "
+    current_character "Где искать подарок?"
+    menu:
+        'На письменном столе':
+            current_character "Я соскочил со стула и добежал до стола."
+            current_character "Запрыгнув и оглядевшись, я не заметил ничего примечательного."
+            current_character "В этот момент Надя обернулась ко мне. "
+            current_character "Видимо, я не успел избежать ее внимания."
+            current_character "Цепкие детские ручки обвились вокруг тела и понесли меня в сторону кровати."
+            current_character "Пришлось смириться со своим положением пленника."
+            current_character "Через некоторое время я выбрался и вернулся к изучению комнаты с высоты стула."
+
+            $ gift_children = False
+            jump children_wrong
+        'В шкафу с одеждой':
+            current_character "Я соскочил со стула и добежал до шкафа."
+            current_character "Я заскочил на полку благодаря приоткрытой дверце. "
+            current_character "В темноте и бардаке ничего не было видно."
+            current_character "В этот момент Надя вытащила меня обратно."
+            current_character "Видимо, я не успел избежать ее внимания."
+            current_character "Цепкие детские ручки обвились вокруг тела и понесли меня в сторону кровати."
+            current_character "Через некоторое время я выбрался и вернулся к изучению комнаты с высоты стула."
+
+            $ gift_children = False
+            jump children_wrong
+        'Под кроватью':
+            current_character "Я соскочил со стула и добежал до кровати."
+            scene thermos-and-hat
+            $ renpy.notify("Вы нашли второй подарок!")
+            current_character 'Подарок найден с первой попытки!'
+            current_character "Вот и второй подарок! Это, должно быть, для Владимира."
+            current_character "Надеюсь, ему понравится."
+            scene children
+            current_character "Я вылез из-под кровати Кирилла и взгляд невольно упал на кровать Нади."
+            current_character "Она отошла к столу и что-то делала там."
+            current_character "Ее дневник же лежал раскрытым на полу, видимо, упав от всех передвижений. "
+            current_character "Он блестел от количества блесток и наклеек на страницах."
+            current_character "Из любопытства я подошел поближе."
+            current_character "На развороте были нарисованы конфеты и елки."
+            current_character "Небольшая кривая запись в углу бросилась в глаза из-за отсутствия украшений рядом."
+            current_character "Мама не должна найти {b}коробку с фотографиями.{/b}"
+            current_character "В этот момент она перевернула страницу, выводя меня из транса, и я стал активно перебирать лапами, чтобы выбраться."
+            current_character "К счастью, она быстро отпустила меня и я выскочил из комнаты."
+            $ gift_children = True
+            jump children_end
 
     return
 
-label first_mouse:
-    scene kitchen:
-        size(1920, 1080)
-    
+label children_wrong:
+    scene children
+    menu:
+        'На письменном столе':
+            current_character "Я соскочил со стула и добежал до стола."
+            current_character "Запрыгнув и оглядевшись, я не заметил ничего примечательного."
+            current_character "В этот момент Надя обернулась ко мне. "
+            current_character "Видимо, я не успел избежать ее внимания."
+            current_character "Цепкие детские ручки обвились вокруг тела и понесли меня в сторону кровати."
+            current_character "Пришлось смириться со своим положением пленника."
+            current_character "Через некоторое время я выбрался и вернулся к изучению комнаты с высоты стула."
+            jump children_wrong
+        'В шкафу с одеждой':
+            current_character "Я соскочил со стула и добежал до шкафа."
+            current_character "Я заскочил на полку благодаря приоткрытой дверце. "
+            current_character "В темноте и бардаке ничего не было видно."
+            current_character "В этот момент Надя вытащила меня обратно."
+            current_character "Видимо, я не успел избежать ее внимания."
+            current_character "Цепкие детские ручки обвились вокруг тела и понесли меня в сторону кровати."
+            current_character "Через некоторое время я выбрался и вернулся к изучению комнаты с высоты стула."
+            jump children_wrong
+        'Под кроватью':
+            current_character "Я соскочил со стула и добежал до кровати."
+            current_character "Только я хотел дотянуться до подарка, как почувствовал, что меня вытаскивают."
+            $ renpy.notify("Упс! Вы не успели забрать подарок!")
+            current_character "Я громко мявкнул и попытался отбиться, но тщетно."
+            current_character "Было неприятно, но ранить маленькую девочку я тоже не хотел."
+            current_character "Я зашипел, но Надя только шикнула на меня и понесла к своей кровати."
+            current_character "Там она села, крепко обняв меня, и стала показывать свой дневник."
+            current_character "Я был расстроен, что не успел взять подарок."
+            current_character "Тем не менее, одна вещь бросилась в глаза."
+            current_character "На развороте были нарисованы конфеты и елки."
+            current_character "Небольшая кривая запись в углу страницы же совсем не была украшена."
+            current_character "Мама не должна найти {b}коробку с фотографиями.{/b}"
+            current_character "Больше ничего интересного тут не было, и я выскочил из комнаты."
+            jump children_end
+
+    return
+
+label children_end:
+    scene children
+
+    if gift_children == True:
+        $ gifts = gifts + 1
+
+label hallway_2:
+    scene hallway
+    current_character "Как подсказывала память, все фотографии хранились либо в гостиной на видном месте, либо на чердаке. "
+    current_character "Врядли бы Надя стала рисковать и прятать их на прозрачных полках в самом проходимом месте дома, поэтому я направился на чердак."
+    current_character "Стоило мне приблизиться к лестнице, как я тут же заметил знакомый маленький силуэт."
+    current_character "Мышь бессовестно сидела на третьей ступени и грызла семечко."
+    current_character "Я тихо мяукнул, чтобы привлечь ее внимание."
+    current_character "Она обернулась и снова вперилась в меня взглядом."
+
+label second_mouse:
     call Msay
 
     call MenuTwo
 
-    return
+label attic:
+    current_character "Мышь закончила жевать свое семечко, спустилась с лестницы."
+    current_character "Я подумал, что сейчас-то она отреагирует, как нормальная мышь, но нет."
+    current_character "Она немного посидела напротив меня, а потом убежала куда-то под лестницу."
+    current_character "Я проводил ее взглядом, но продолжил свой путь."
 
+    scene attic
+    

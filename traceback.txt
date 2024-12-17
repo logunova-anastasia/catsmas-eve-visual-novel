@@ -1,95 +1,24 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 22, in script
-    e "Я кот, всех с новай годай"
-  File "game/script.rpy", line 22, in script
-    e "Я кот, всех с новай годай"
-  File "renpy/common/000window.rpy", line 132, in _window_auto_callback
-    _window_show(auto=True)
-  File "renpy/common/000window.rpy", line 75, in _window_show
-    renpy.with_statement(trans)
-Exception: Could not find font 'Bimbo-Ballpoint.ttf'.
+  File "game/script.rpy", line 245, in script
+    current_character "Ура! Кастрюльки для бабушки, первый подарок найден!"
+Exception: Sayer 'current_character' is not defined.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\bootstrap.py", line 359, in bootstrap
-    renpy.main.main()
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\main.py", line 652, in main
-    run(restart)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\main.py", line 148, in run
-    renpy.execution.run_context(True)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\execution.py", line 958, in run_context
-    context.run()
-  File "game/script.rpy", line 22, in script
-    e "Я кот, всех с новай годай"
-  File "lib/python3.9/future/utils/__init__.py", line 444, in raise_
-  File "game/script.rpy", line 22, in script
-    e "Я кот, всех с новай годай"
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\ast.py", line 2573, in execute
+  File "game/script.rpy", line 245, in script
+    current_character "Ура! Кастрюльки для бабушки, первый подарок найден!"
+  File "C:\Users\Анастасия\Desktop\other\python\renpy-8.3.3-sdk\renpy\ast.py", line 2573, in execute
     Say.execute(self)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\ast.py", line 583, in execute
-    statement_name(stmt_name)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\ast.py", line 52, in statement_name
-    i(name)
-  File "renpy/common/000window.rpy", line 132, in _window_auto_callback
-    _window_show(auto=True)
-  File "renpy/common/000window.rpy", line 75, in _window_show
-    renpy.with_statement(trans)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\exports\statementexports.py", line 257, in with_statement
-    return renpy.game.interface.do_with(trans, paired, clear=clear)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\core.py", line 1578, in do_with
-    return self.interact(trans_pause=True,
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\core.py", line 2215, in interact
-    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, pause_modal=pause_modal, **kwargs) # type: ignore
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\core.py", line 2879, in interact_core
-    self.draw_screen(root_widget, fullscreen_video, (not fullscreen_video) or video_frame_drawn)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\core.py", line 1381, in draw_screen
-    surftree = renpy.display.render.render_screen(
-  File "render.pyx", line 486, in renpy.display.render.render_screen
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\layout.py", line 900, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\transition.py", line 384, in render
-    top = render(self.new_widget, width, height, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\layout.py", line 900, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\layout.py", line 900, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\screen.py", line 754, in render
-    child = renpy.display.render.render(self.child, w, h, st, at)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\layout.py", line 900, in render
-    surf = render(child, width, height, cst, cat)
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\display\layout.py", line 1457, in render
-    surf = render(child,
-  File "render.pyx", line 170, in renpy.display.render.render
-  File "render.pyx", line 260, in renpy.display.render.render
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\text\text.py", line 2604, in render
-    virtual_layout = Layout(self, width, height, renders, drawable_res=False, size_only=True)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\text\text.py", line 770, in __init__
-    glyphs = ts.glyphs(s, self)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\text\text.py", line 340, in glyphs
-    fo = font.get_font(self.font, self.size, self.bold, self.italic, 0, self.antialias, self.vertical, self.hinting, layout.oversample, self.shaper, self.instance, self.axis)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\text\font.py", line 745, in get_font
-    face = load_face(fn, shaper)
-  File "C:\Users\Анастасия\Downloads\renpy-8.3.3-sdk\renpy\text\font.py", line 673, in load_face
-    raise Exception("Could not find font {0!r}.".format(orig_fn))
-Exception: Could not find font 'Bimbo-Ballpoint.ttf'.
+  File "C:\Users\Анастасия\Desktop\other\python\renpy-8.3.3-sdk\renpy\ast.py", line 575, in execute
+    who = eval_who(self.who, self.who_fast)
+  File "C:\Users\Анастасия\Desktop\other\python\renpy-8.3.3-sdk\renpy\ast.py", line 464, in eval_who
+    raise Exception("Sayer '%s' is not defined." % who)
+Exception: Sayer 'current_character' is not defined.
 
 Windows-10-10.0.19045 AMD64
 Ren'Py 8.3.3.24111502
 christmas cat 1.0
-Wed Nov 20 12:48:31 2024
+Mon Dec 16 01:20:38 2024

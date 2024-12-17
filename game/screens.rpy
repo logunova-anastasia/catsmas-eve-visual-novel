@@ -115,13 +115,23 @@ screen say(who, what):
     ## места.
     if not renpy.variant("small"):
         if renpy.get_say_image_tag() == 'chosen_orange_cat':   #let us show different characters(sprites) in different places
-            add SideImage() xalign 0.9 yalign 1.0 offset (60, 340)
+            add SideImage() xalign -0.25 yalign 1.0 offset (60, 340)
         elif renpy.get_say_image_tag() == 'chosen_grey_cat':
-            add SideImage() xalign -0.1 yalign 0.75 offset (20, 40)
+            add SideImage() xalign -0.15 yalign 0.75 offset (20, 40)
         elif renpy.get_say_image_tag() == 'chosen_white_cat':
-            add SideImage() xalign -0.1 yalign 0.25 offset (-50, -80)
+            add SideImage() xalign -0.1 yalign 0.1 offset (-50, -80)
         elif renpy.get_say_image_tag() == 'rat':
             add SideImage() yalign 1.0 
+        elif renpy.get_say_image_tag() == 'son':
+            add SideImage() yalign 1.0 xalign -0.1
+        elif renpy.get_say_image_tag() == 'mom':
+            add SideImage() yalign 1.0 xalign -0.2
+        elif renpy.get_say_image_tag() == 'dad':
+            add SideImage() yalign 1.0 xalign -0.2    
+        elif renpy.get_say_image_tag() == 'grandma':
+            add SideImage() yalign 1.2 xalign -0.15
+        elif renpy.get_say_image_tag() == 'daughter':
+            add SideImage() yalign 1.4 xalign -0.25
         else:
             add SideImage() xalign -0.2 yalign 0.5 offset (-60, 340)  #default
 
@@ -140,7 +150,7 @@ style namebox_label is say_label
 
 
 style window:
-    xalign 0.5
+    xalign 0.8
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
@@ -166,7 +176,7 @@ style say_dialogue:
     properties gui.text_properties("dialogue")
 
     xpos 495
-    xsize 694
+    xsize 1200
     ypos gui.dialogue_ypos
 
     adjust_spacing False

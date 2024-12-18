@@ -21,7 +21,7 @@ define chosen_orange_cat = Character("Оскар", image='chosen_orange_cat')
 define chosen_grey_cat = Character("Том", image='chosen_grey_cat')
 define chosen_white_cat = Character("Марс", image='chosen_white_cat')
 
-define rat = Character('Безумная мышь', image='rat')
+define rat = Character('Безумная мышь Стивен', image='rat')
 image side rat = "images/rat.png"
 
 define son = Character('Кирилл', image='son')
@@ -894,10 +894,9 @@ label living_room_fight:
             current_character "Мышь свернулась в клубок рядом со мной, словно утешая."
             current_character "Мы остались лежать вдвоем, наблюдая в окно, как на дом опускалась ночь."
 
-    label credits:
-        scene black with dissolve
-        show text "Вы прошли игру! С Новым годом и рождеством! Игру для вас сделали: Грибановой Дианой, Логуновой Анастасией и Переяславцевой Ириной"
-        return
+label credits:
+    current_character "Вы прошли игру! С Новым годом и рождеством!"
+    return
 
 
 

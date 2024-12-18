@@ -317,8 +317,7 @@ label kitchen:
             current_character "Мне не оставалось ничего, кроме как отправиться дальше."
             $ gift_kitchen = False
             jump kitchen_wrong
-    return
-
+            
 label kitchen_wrong:
     scene kitchen
     menu:
@@ -357,8 +356,6 @@ label kitchen_wrong:
             current_character "Мне не оставалось ничего, кроме как выйти из кухни и дождаться, пока хозяйка выйдет."
             current_character "Как только она снова скрылась в коридоре, я вернулся на кухню."
             jump kitchen_wrong
-
-    return
 
 label kitchen_end:
     scene kitchen
@@ -403,7 +400,6 @@ label second_floor:
 
 label first_mouse:
     scene hallway
-    
     call Msay
     $ renpy.notify("Мышь запомнит ваш ответ!")
     call MenuTwo
@@ -461,8 +457,6 @@ label children:
             current_character "К счастью, она быстро отпустила меня и я выскочил из комнаты."
             $ gift_children = True
             jump children_end
-
-    return
 
 label children_wrong:
     scene children
@@ -567,8 +561,6 @@ label attic:
 
             $ gift_attic = False
             jump attic_wrong
-            
-    return
 
 label attic_wrong:
     menu:
@@ -599,8 +591,6 @@ label attic_wrong:
             current_character "Но, как бы я не поддевал лапой створки, они не поддавались."
             current_character "Пришлось вернуться на подоконник."
             jump attic_wrong
-            
-    return
 
 label attic_end:
     if gift_attic == True:
@@ -675,8 +665,6 @@ label bedroom:
 
             $ gift_bedroom = False
             jump bedroom_wrong
-            
-    return
 
     label bedroom_wrong:
         menu:
@@ -710,8 +698,6 @@ label bedroom:
                 current_character "Но, как бы я не поддевал лапой створки, они не поддавались."
                 current_character "Пришлось вернуться на подоконник."
                 jump bedroom_wrong
-                
-    return
 
 label bedroom_end:
     if gift_bedroom == True:
@@ -770,8 +756,6 @@ label hallway_3:
 
             $ gift_hallway = True
             jump hallway_end
-            
-    return
 
 label hallway_wrong:
     menu:
@@ -805,8 +789,6 @@ label hallway_wrong:
             current_character "В руках мальчика я вернулся в гостиную."
             current_character "Оказавшись в дверном проеме, я соскользнул на пол."
             jump hallway_end
-            
-    return
 
 label hallway_end:
     if gift_hallway == True:
@@ -912,7 +894,10 @@ label living_room_fight:
             current_character "Мышь свернулась в клубок рядом со мной, словно утешая."
             current_character "Мы остались лежать вдвоем, наблюдая в окно, как на дом опускалась ночь."
 
-    
+    label credits:
+        scene black with dissolve
+        show text "Вы прошли игру! С Новым годом и рождеством! Игру для вас сделали: Грибановой Дианой, Логуновой Анастасией и Переяславцевой Ириной"
+        return
 
 
 
